@@ -10,8 +10,8 @@
 //-----------------------------------------
 public class Guess{
     private static Suspect suspect;
-    private static Weapon weapon;
     private static Location location;
+    private static Weapon weapon;
     private boolean accusation;
 
     //------------------------------------------------------
@@ -27,7 +27,7 @@ public class Guess{
     // PARAMETERS: suspect (Card), weapon (Card),
     //      location (Card), accusation (Boolean)
     //------------------------------------------------------
-    public Guess(Card suspect, Card weapon, Card location, Boolean accusation){
+    public Guess(Card suspect, Card location, Card weapon, Boolean accusation){
 
         // first make sure the first card is a Suspect card
         // this is to avoid the problem where a player might
@@ -41,18 +41,6 @@ public class Guess{
             System.out.println("Warning: No suspect card was found when creating the guess.");
         }
 
-        // make sure the second card is a Weapon card
-        // this is to avoid the problem where a player might
-        // accidently try to guess which weapon was used with
-        // a suspect or location card.
-        if(weapon instanceof Weapon){
-            this.weapon = (Weapon)weapon;
-        } else {
-            // the second card was not a Weapon card
-            weapon = null;
-            System.out.println("Warning: No weapon card was found when creating the guess.");
-        }
-
         // make sure the third card is a Location card
         // this is to avoid the problem where a player might
         // accidently try to guess what the location was using
@@ -63,6 +51,18 @@ public class Guess{
             // the third card was not a Weapon card
             location = null;
             System.out.println("Warning: No location card was found when creating the guess.");
+        }
+
+        // make sure the second card is a Weapon card
+        // this is to avoid the problem where a player might
+        // accidently try to guess which weapon was used with
+        // a suspect or location card.
+        if(weapon instanceof Weapon){
+            this.weapon = (Weapon)weapon;
+        } else {
+            // the second card was not a Weapon card
+            weapon = null;
+            System.out.println("Warning: No weapon card was found when creating the guess.");
         }
 
         // set the location
@@ -83,18 +83,6 @@ public class Guess{
     } // guessedSuspect
 
     //------------------------------------------------------
-    // guessedWeapon
-    //
-    // PURPOSE: returns the weapon card
-    //
-    // Returns: weapon (Card) or null
-    //      if we are missing the weapon card.
-    //------------------------------------------------------
-    public Card guessedWeapon(){
-        return weapon;
-    } // guessedWeapon
-
-    //------------------------------------------------------
     // guessedLocation
     //
     // PURPOSE: returns the Location card
@@ -105,6 +93,18 @@ public class Guess{
     public Card guessedLocation(){
         return location;
     } // guessedLocation
+
+    //------------------------------------------------------
+    // guessedWeapon
+    //
+    // PURPOSE: returns the weapon card
+    //
+    // Returns: weapon (Card) or null
+    //      if we are missing the weapon card.
+    //------------------------------------------------------
+    public Card guessedWeapon(){
+        return weapon;
+    } // guessedWeapon
 
     //------------------------------------------------------
     // printGuess
@@ -120,8 +120,8 @@ public class Guess{
 
         if((suspect != null) && (weapon != null) && (location != null)) {
             System.out.println("Suspect: " + suspect.getValue());
-            System.out.println("Weapon: " + weapon.getValue());
             System.out.println("Location: " + location.getValue());
+            System.out.println("Weapon: " + weapon.getValue());
         } else {
             System.out.println("Can't print incomplete guess.");
         }
