@@ -78,7 +78,7 @@ public class Guess{
     // Returns: suspect (Card) or null
     //      if we are missing the suspect card.
     //------------------------------------------------------
-    public Card guessedSuspect(){
+    public Suspect guessedSuspect(){
         return suspect;
     } // guessedSuspect
 
@@ -90,7 +90,7 @@ public class Guess{
     // Returns: location (Card) or null
     //      if we are missing the lovation card.
     //------------------------------------------------------
-    public Card guessedLocation(){
+    public Location guessedLocation(){
         return location;
     } // guessedLocation
 
@@ -102,7 +102,7 @@ public class Guess{
     // Returns: weapon (Card) or null
     //      if we are missing the weapon card.
     //------------------------------------------------------
-    public Card guessedWeapon(){
+    public Weapon guessedWeapon(){
         return weapon;
     } // guessedWeapon
 

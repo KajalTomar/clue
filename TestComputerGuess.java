@@ -29,13 +29,13 @@ public class TestComputerGuess{
         people = new ArrayList<Card>();
         places = new ArrayList<Card>();
         weapons = new ArrayList<Card>();
-
-        bot.setUp(2,0,people,places,weapons);
     }
 
     @Test
     public void test1() {
         // a computer player has no cards, then canAnser should returh null
+
+        bot.setUp(2,0,people,places,weapons);
 
         Guess guess = new Guess(new Suspect("Bobby"),new Location("Kitchen"), new Weapon("Gun"),false);
         assertNull(bot.canAnswer(guess, player));
@@ -49,6 +49,8 @@ public class TestComputerGuess{
         Card joe = new Suspect("Joe");
         Card livingRoom = new Location("Living room");
         Card knife = new Weapon("Knife");
+
+        bot.setUp(2,0,people,places,weapons);
 
         bot.setCard(joe);
         bot.setCard(livingRoom);
@@ -78,9 +80,12 @@ public class TestComputerGuess{
         Card livingRoom = new Location("Living room");
         Card knife = new Weapon("Knife");
 
+        bot.setUp(2,0,people,places,weapons);
+
         bot.setCard(joe);
         bot.setCard(livingRoom);
         bot.setCard(knife);
+
 
         // has only suspect and location
         Guess guess0 = new Guess(joe,livingRoom, new Weapon("Gun"),false);
@@ -108,4 +113,52 @@ public class TestComputerGuess{
         assertTrue(matches);
     }
 
+    @Test
+    public void test4(){
+        // an initial guess from a
+        // computer player must consist of cards it does not have.
+        boolean matches;
+
+        people.add(new Suspect("Bob"));
+        people.add(new Suspect("Timmy"));
+        people.add(new Suspect("Lori"));
+        people.add(new Suspect("Mindy"));
+
+        places.add(new Location("Kitchen"));
+        places.add(new Location("Bathroom"));
+        places.add(new Location("LivingRoom"));
+        places.add(new Location("Garage"));
+
+        weapons.add(new Weapon("Knife"));
+        weapons.add(new Weapon("CandleStick"));
+        weapons.add(new Weapon("Gun"));
+
+        bot.setUp(2,0,people,places,weapons);
+
+        // give bot all the player cards except the last one (Mindy)
+        for(int i=0; i<people.size()-1;i++){
+            bot.setCard(people.get(i));
+        }
+
+        // give bot all the location cards except the first one (kitchen)
+        for(int i=1; i<places.size();i++){
+            bot.setCard(places.get(i));
+        }
+
+        // give bot all the weapons cards except the first and the last one (knife,gun)
+        for(int i=0; i<weapons.size()-1;i++){
+            bot.setCard(weapons.get(i));
+        }
+
+        Guess botGuess = bot.getGuess();
+
+        // the guess can only be [Mindy,kitchen,gun]or [Mindy,kitchen,knife] because the computer has all the other cards
+        assertEquals(botGuess.guessedSuspect(), people.get(people.size()-1));
+        assertEquals(botGuess.guessedLocation(), places.get(0));
+
+        matches = (botGuess.guessedWeapon() == weapons.get(0) || botGuess.guessedWeapon() == weapons.get(weapons.size()-1));
+        assertTrue(matches);
+    }
+
 }
+
