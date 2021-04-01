@@ -14,14 +14,21 @@ import java.util.ArrayList;
 
 public class TestComputerGuess{
 
+    private static HumanPlayer player;
+    private static ArrayList<ComputerPlayer> bots;
+    private static ArrayList<Card> people;
+    private static ArrayList<Card> places;
+    private static ArrayList<Card> weapons;
+
     @BeforeEach
     public void setup(){
-        ArrayList<Card> people = new ArrayList<Card>();
-        ArrayList<Card> places = new ArrayList<Card>();
-        ArrayList<Card> weapons= new ArrayList<Card>();
+        player = new HumanPlayer();
+        ComputerPlayer testBot = new ComputerPlayer();
 
-        ComputerPlayer bot = new ComputerPlayer();
-        HumanPlayer player = new HumanPlayer();
+        bots = new ArrayList<ComputerPlayer>();
+        people = new ArrayList<Card>(); // Bob, Timmy, Lori, John, Ryan
+        places = new ArrayList<Card>(); // China, Polopark, Paris, Kitchen
+        weapons = new ArrayList<Card>(); // Knife, CharmingSmile, Gun
 
         bot.setUp(2,0,people,places,weapons);
     }
