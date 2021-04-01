@@ -206,7 +206,67 @@ public class TestComputerGuess{
         assertEquals(botGuess.guessedLocation(), places.get(0));
         assertEquals(botGuess.guessedWeapon(), weapons.get(0));
         assertTrue(botGuess.isAccusation());
+    }
 
+    @Test
+    public void test6() {
+//        If a computer player is given all but four cards from the set of cards, a call to getGuess
+//        should not return an accusation. However, if receiveInfo is called with one of the four
+//        cards, then after that, a second call to getGuess should return the correct accusation.
+        boolean matches;
+
+        people.add(new Suspect("Bob"));
+        people.add(new Suspect("Timmy"));
+        people.add(new Suspect("Lori"));
+        people.add(new Suspect("Mindy"));
+
+        places.add(new Location("Kitchen"));
+        places.add(new Location("Bathroom"));
+        places.add(new Location("LivingRoom"));
+        places.add(new Location("Garage"));
+
+        weapons.add(new Weapon("Knife"));
+        weapons.add(new Weapon("CandleStick"));
+        weapons.add(new Weapon("Gun"));
+
+        bot.setUp(2, 0, people, places, weapons);
+
+        // give bot all the player cards except the last one (Mindy)
+        for (int i = 0; i < people.size() - 1; i++) {
+            bot.setCard(people.get(i));
+        }
+
+        // give bot all the location cards except the first one (kitchen)
+        for (int i = 1; i < places.size(); i++) {
+            bot.setCard(places.get(i));
+        }
+
+        // give bot all the weapons cards except the first and the last one (knife,gun)
+        for (int i = 1; i < weapons.size() - 1; i++) {
+            bot.setCard(weapons.get(i));
+        }
+
+        Guess botGuess = bot.getGuess();
+
+        // the guess can only be [Mindy,kitchen,gun]or [Mindy,kitchen,knife] because the computer has all the other cards
+        assertEquals(botGuess.guessedSuspect(), people.get(people.size() - 1));
+        assertEquals(botGuess.guessedLocation(), places.get(0));
+
+        matches = (botGuess.guessedWeapon() == weapons.get(0) || botGuess.guessedWeapon() == weapons.get(weapons.size() - 1));
+        assertTrue(matches);
+
+        assertFalse(botGuess.isAccusation());
+
+        // gets info about the gun card
+        bot.reciveInfo(player, weapons.get(weapons.size() - 1));
+
+        botGuess = bot.getGuess();
+
+        // the accusation can only be [Mindy,kitchen,knife] because the computer has all the other cards
+        assertEquals(botGuess.guessedSuspect(), people.get(people.size() - 1));
+        assertEquals(botGuess.guessedLocation(), places.get(0));
+        assertEquals(botGuess.guessedWeapon(), weapons.get(0));
+        assertTrue(botGuess.isAccusation());
     }
 
 }
