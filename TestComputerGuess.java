@@ -71,6 +71,8 @@ public class TestComputerGuess{
     public void test3(){
         // If a computer player has exactly one card from a guess, canAnswer should return that card.
 
+        Boolean matches;
+
         // these are the cards the computer will have
         Card joe = new Suspect("Joe");
         Card livingRoom = new Location("Living room");
@@ -81,25 +83,29 @@ public class TestComputerGuess{
         bot.setCard(knife);
 
         // has only suspect and location
-//        Guess guess0 = new Guess(joe,livingRoom, new Weapon("Gun"),false);
-//        Card result0 = bot.canAnswer(guess0,player);
-//        assert(assertEquals(result0,joe)||assertEquals(result0,livingRoom));
+        Guess guess0 = new Guess(joe,livingRoom, new Weapon("Gun"),false);
+        Card result0 = bot.canAnswer(guess0,player);
+        matches = (result0 == joe || result0 == livingRoom);
+        assertTrue(matches);
 
-//        // has only suspect and weapon
-//        Guess guess1 = new Guess(joe,new Location("bedroom"),knife,false);
-//        Card result1 = bot.canAnswer(guess1,player);
-//        assert(result1 == joe || result1 == knife);
-//
-//
-//        // has only the weapon and location
-//        Guess guess2 = new Guess(new Suspect("Martha"),livingRoom,knife,false);
-//        Card result2 = bot.canAnswer(guess0,player);
-//        assert(result2 == joe);
-//
-//        // has all three of the cards
-//        Guess guess3 = new Guess(joe,livingRoom,knife,false);
-//        Card result3 = bot.canAnswer(guess0,player);
-//        assert(result3 == joe || result3 == livingRoom);
+        // has only suspect and weapon
+        Guess guess1 = new Guess(joe,new Location("bedroom"),knife,false);
+        Card result1 = bot.canAnswer(guess1,player);
+        matches = (result1 == joe || result1 == knife);
+        assertTrue(matches);
+
+
+        // has only the weapon and location
+        Guess guess2 = new Guess(new Suspect("Martha"),livingRoom,knife,false);
+        Card result2 = bot.canAnswer(guess0,player);
+        matches = (result2 == knife || result2 == livingRoom);
+        assertTrue(matches);
+
+        // has all three of the cards
+        Guess guess3 = new Guess(joe,livingRoom,knife,false);
+        Card result3 = bot.canAnswer(guess0,player);
+        matches = (result3 == joe || result3 == livingRoom || result3 == knife);
+        assertTrue(matches);
     }
 
 }
