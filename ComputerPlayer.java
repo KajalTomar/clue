@@ -152,7 +152,7 @@ public class ComputerPlayer implements IPlayer{
 
         if(suspects.size() > 0  && locations.size() > 0 && weapons.size() > 0) {
             if (suspects.size() == 1 && locations.size() == 1 && weapons.size() == 1) {
-                myGuess = new Guess(suspects.get(0), locations.get(0), weapons.get(0), false);
+                myGuess = new Guess(suspects.get(0), locations.get(0), weapons.get(0), true);
             } else {
                 choice = random.nextInt(suspects.size());
                 personGuess = suspects.get(choice);
