@@ -269,5 +269,46 @@ public class TestComputerGuess{
         assertTrue(botGuess.isAccusation());
     }
 
+    @Test
+    public void test7() {
+//        If a human player is given some cards, and then canAnswer is called with a guess that
+//        includes one (or more) of the cards the player has, the method must return one of
+//        those cards (that is, the human player cannot give a card that they do not have in their
+//        hand)
+        boolean matches;
+
+        people.add(new Suspect("Bob"));
+        people.add(new Suspect("Timmy"));
+        people.add(new Suspect("Lori"));
+        people.add(new Suspect("Mindy"));
+
+        places.add(new Location("Kitchen"));
+
+        weapons.add(new Weapon("Knife"));
+
+
+        bot.setUp(2, 0, people, places, weapons);
+        player.setUp(2, 1, people, places, weapons);
+
+
+        // player only has the cards: Bobby, Kitchen, and Mindy in their hand
+        bot.setCard(people.get(0));
+        bot.setCard(places.get(0));
+        bot.setCard(weapons.get(0));
+
+        Guess guess = new Guess(people.get(2),places.get(0),weapons.get(0),false);
+
+        // should only be able to show ktichen or knife. NOT Lori because player doesn't have that card
+        Card humanAnswer = player.canAnswer(guess,bot);
+
+        // the human can return anything EXCEPT mindy
+        assertNotEquals(humanAnswer, (Card)(people.get(2)));
+
+        matches = (humanAnswer == places.get(0)|| humanAnswer == weapons.get(0));
+        assertTrue(matches);
+    }
+
 }
+
+
 
