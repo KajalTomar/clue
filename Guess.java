@@ -107,6 +107,17 @@ public class Guess{
     } // guessedWeapon
 
     //------------------------------------------------------
+    // isAccusation
+    //
+    // PURPOSE: returns true if the guess is an accusation
+    //
+    // Returns: true (if an accusation) otherise returns false
+    //------------------------------------------------------
+    public boolean isAccusation(){
+        return accusation;
+    } // guessedWeapon
+
+    //------------------------------------------------------
     // printGuess
     //
     // PURPOSE: prints out the guess

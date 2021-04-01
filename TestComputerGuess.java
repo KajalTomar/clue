@@ -146,7 +146,7 @@ public class TestComputerGuess{
         }
 
         // give bot all the weapons cards except the first and the last one (knife,gun)
-        for(int i=0; i<weapons.size()-1;i++){
+        for(int i=1; i<weapons.size()-1;i++){
             bot.setCard(weapons.get(i));
         }
 
@@ -158,6 +158,55 @@ public class TestComputerGuess{
 
         matches = (botGuess.guessedWeapon() == weapons.get(0) || botGuess.guessedWeapon() == weapons.get(weapons.size()-1));
         assertTrue(matches);
+
+        assertFalse(botGuess.isAccusation());
+    }
+
+    @Test
+    public void test4(){
+        // an initial guess from a
+        // computer player must consist of cards it does not have.
+        boolean matches;
+
+        people.add(new Suspect("Bob"));
+        people.add(new Suspect("Timmy"));
+        people.add(new Suspect("Lori"));
+        people.add(new Suspect("Mindy"));
+
+        places.add(new Location("Kitchen"));
+        places.add(new Location("Bathroom"));
+        places.add(new Location("LivingRoom"));
+        places.add(new Location("Garage"));
+
+        weapons.add(new Weapon("Knife"));
+        weapons.add(new Weapon("CandleStick"));
+        weapons.add(new Weapon("Gun"));
+
+        bot.setUp(2,0,people,places,weapons);
+
+        // give bot all the player cards except the last one (Mindy)
+        for(int i=0; i<people.size()-1;i++){
+            bot.setCard(people.get(i));
+        }
+
+        // give bot all the location cards except the first one (kitchen)
+        for(int i=1; i<places.size();i++){
+            bot.setCard(places.get(i));
+        }
+
+        // give bot all the weapons cards except the first (knife)
+        for(int i=1; i<weapons.size();i++){
+            bot.setCard(weapons.get(i));
+        }
+
+        Guess botGuess = bot.getGuess();
+
+        // the accusation can only be [Mindy,kitchen,knife] because the computer has all the other cards
+        assertEquals(botGuess.guessedSuspect(), people.get(people.size()-1));
+        assertEquals(botGuess.guessedLocation(), places.get(0));
+        assertEquals(botGuess.guessedWeapon(), weapons.get(0));
+        assertTrue(botGuess.isAccusation());
+
     }
 
 }
