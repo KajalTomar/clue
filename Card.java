@@ -43,4 +43,8 @@ public abstract class Card{
         return value;
     }
 
+    public void printCard(){
+        System.out.println("[ "+value+" ("+type+") ]");
+    }
+
 } // Card

@@ -11,18 +11,25 @@ import java.util.ArrayList;
 
 public class ComputerPlayer implements IPlayer{
 
-    public ComputerPlayer(){
-
-    }
     private int numberOfOpponents;
     private int index;
-    private ArrayList<Card> suspects;
-    private ArrayList<Card> possibleLocations;
-    private ArrayList<Card> possibleWeapons;
+    private ArrayList<Suspect> suspects;
+    private ArrayList<Location> locations;
+    private ArrayList<Weapon> weapons;
 
     private ArrayList<Suspect> myPeopleCards;
     private ArrayList<Location> myLocationCards;
     private ArrayList<Weapon> myWeaponCards;
+
+    public ComputerPlayer(){
+        suspects  = new ArrayList<Suspect>();
+        locations = new ArrayList<Location>();
+        weapons = new ArrayList<Weapon>();
+
+        myPeopleCards = new ArrayList<Suspect>();
+        myLocationCards = new ArrayList<Location>();
+        myWeaponCards = new ArrayList<Weapon>();
+    }
 
     //---------------------------------------------------------------
     // Guess
@@ -38,11 +45,27 @@ public class ComputerPlayer implements IPlayer{
     //             weapons (ArrayList<card>)- list of Weapon cards
     //----------------------------------------------------------------
     public void setUp( int numPlayers, int index, ArrayList<Card> ppl, ArrayList<Card> places, ArrayList<Card> weapons) {
-        numberOfOpponents = numPlayers;
+        numberOfOpponents = numPlayers-1;
         this.index = index;
-        this.suspects = ppl;
-        this.possibleLocations = places;
-        this.possibleWeapons = weapons;
+
+        for(int i = 0; i < ppl.size(); i++){
+            if(ppl.get(i) instanceof Suspect) {
+                suspects.add((Suspect)ppl.get(i));
+            }
+        }
+
+        for(int i = 0; i < places.size(); i++){
+            if(places.get(i) instanceof Location) {
+                locations.add((Location)places.get(i));
+            }
+        }
+
+        for(int i = 0; i < weapons.size(); i++){
+            if(weapons.get(i) instanceof Weapon) {
+                (this.weapons).add((Weapon)weapons.get(i));
+            }
+        }
+
     } // setUp
 
     //------------------------------------------------------
@@ -61,19 +84,19 @@ public class ComputerPlayer implements IPlayer{
         int indexofCard;
 
         if (c instanceof Suspect){
-            myPeopleCards.add((Suspect)c);
+            myPeopleCards.add(((Suspect)c));
             indexofCard = suspects.indexOf(c);
             suspects.remove(c);
         }
         else if(c instanceof Location){
             myLocationCards.add((Location)c);
-            indexofCard = possibleLocations.indexOf(c);
-            possibleLocations.remove(c);
+            indexofCard = locations.indexOf(c);
+            locations.remove(c);
         }
         else if (c instanceof Weapon){
             myWeaponCards.add((Weapon)c);
-            indexofCard = possibleWeapons.indexOf(c);
-            possibleWeapons.remove(indexofCard);
+            indexofCard = weapons.indexOf(c);
+            weapons.remove(indexofCard);
         }
     } // setCard
 
@@ -96,7 +119,27 @@ public class ComputerPlayer implements IPlayer{
     // Returns: index (int)
     //------------------------------------------------------
     public Card canAnswer(Guess g, IPlayer ip){
-        return null;
+        Suspect suspectGuess = (Suspect) g.guessedSuspect();
+        Location locationGuess = (Location) g.guessedLocation();
+        Weapon weaponGuess = (Weapon) g.guessedWeapon();
+        Card toShow = null;
+        int indexofCard;
+
+        if(suspectGuess!= null && locationGuess!= null && weaponGuess != null) {
+            if (myPeopleCards.contains(suspectGuess)) {
+                indexofCard = myPeopleCards.indexOf(suspectGuess);
+                toShow = myPeopleCards.get(indexofCard);
+            } else if (myLocationCards.contains(locationGuess)) {
+                indexofCard = myLocationCards.indexOf(locationGuess);
+                toShow = myLocationCards.get(indexofCard);
+            } else if (myWeaponCards.contains(weaponGuess)) {
+                indexofCard = myWeaponCards.indexOf(weaponGuess);
+                toShow = myWeaponCards.get(indexofCard);
+            }
+        }
+
+        return toShow;
+
     } // canAnswer
 
     public Guess getGuess(){
