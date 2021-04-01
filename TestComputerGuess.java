@@ -28,6 +28,10 @@ public class TestComputerGuess{
     public void exactlyOneCard() {
         // If a computer player has exactly one card from a guess, canAnswer should return that card.
 
+        ArrayList<Card> people = new ArrayList<Card>();
+        ArrayList<Card> places = new ArrayList<Card>();
+        ArrayList<Card> weapons= new ArrayList<Card>();
+
         // these are the cards the computer will have
         Card joe = new Suspect("Joe");
         Card livingRoom = new Location("Living room");
@@ -35,6 +39,8 @@ public class TestComputerGuess{
 
         ComputerPlayer bot = new ComputerPlayer();
         HumanPlayer player = new HumanPlayer();
+
+        bot.setUp(2,0,people,places,weapons);
 
         bot.setCard(joe);
         bot.setCard(livingRoom);
