@@ -18,7 +18,7 @@ public class TestComputerGuess{
     public void noCards() {
         // a computer player has no cards, then canAnser should returh null
         ComputerPlayer bot = new ComputerPlayer();
-        player = new HumanPlayer();
+        Player player = new HumanPlayer();
 
         Guess guess = new Guess(new Person("Bobby"),new Location("Kitchen"),Weapon("Gun"),false);
 
