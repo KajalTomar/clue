@@ -52,12 +52,50 @@ public class TestComputerGuess{
         assertEquals(joe,bot.canAnswer(guess0,player));
 
         // has only the location
-        Guess guess1 = new Guess(new Suspect("Bobby"),livingRoom, new Weapon("Gun"),false);
+        Guess guess1 = new Guess(new Suspect("Bobby"),livingRoom, new Weapon("Rock"),false);
         assertEquals(livingRoom,bot.canAnswer(guess1,player));
 
         // has only the weapon
-        Guess guess2 = new Guess(new Suspect("Bobby"),new Location("Kitchen"),knife,false);
+        Guess guess2 = new Guess(new Suspect("James"),new Location("Bathroom"),knife,false);
         assertEquals(knife,bot.canAnswer(guess2,player));
+    }
+
+    @test
+    public void moreThanOne(){
+        // If a computer player has exactly one card from a guess, canAnswer should return that card.
+
+        ArrayList<Card> people = new ArrayList<Card>();
+        ArrayList<Card> places = new ArrayList<Card>();
+        ArrayList<Card> weapons= new ArrayList<Card>();
+
+        // these are the cards the computer will have
+        Card joe = new Suspect("Joe");
+        Card livingRoom = new Location("Living room");
+        Card knife = new Weapon("Knife");
+
+        ComputerPlayer bot = new ComputerPlayer();
+        HumanPlayer player = new HumanPlayer();
+
+        bot.setUp(2,0,people,places,weapons);
+
+        bot.setCard(joe);
+        bot.setCard(livingRoom);
+        bot.setCard(knife);
+
+        // has only suspect and location
+        Guess guess0 = new Guess(joe,livingRoom, new Weapon("Gun"),false);
+        assertThat(bot.canAnswer(guess0,player), anyOf(is(livingRoom),is(joe)));
+
+//        // has only suspect and weapon
+//        Guess guess1 = new Guess(joe,new Location("bedroom"),knife,false);
+//        assertEquals(livingRoom,bot.canAnswer(guess1,player));
+//
+//        // has only the weapon and location
+//        Guess guess2 = new Guess(new Suspect("Martha"),livingRoom,knife,false);
+//        assertEquals(knife,bot.canAnswer(guess2,player));
+//
+//        // has all three of the cards
+//        Guess guess = new Guess(joe,livingRoom,knife,false);
     }
 
 }
