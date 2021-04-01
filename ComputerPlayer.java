@@ -122,7 +122,7 @@ public class ComputerPlayer implements IPlayer{
         ArrayList<Card> canShow = cardsIcanShow(g);
         Card toShow = null;
         Random random = new Random();
-        int choice = 0;
+        int choice;
 
         if(canShow.size() == 1){
             toShow = canShow.get(0);
@@ -136,38 +136,28 @@ public class ComputerPlayer implements IPlayer{
     } // canAnswer
 
     public Guess getGuess(){
-        Guess myGuess;
+        Guess myGuess = null;
         Suspect personGuess;
         Location placeGuess;
         Weapon weaponGuess;
         Random random = new Random();
-        int choice = 0;
+        int choice;
 
-        if(suspects.size() == 1 && locations.size()==1 && weapons.size() == 1){
-            myGuess = new Guess(suspects.get(0),locations.get(0),weapons.get(0),false);
-        }
-        else {
-            if(suspects.size() > 1 ){
+        if(suspects.size() > 0  && locations.size() > 0 && weapons.size() > 0) {
+            if (suspects.size() == 1 && locations.size() == 1 && weapons.size() == 1) {
+                myGuess = new Guess(suspects.get(0), locations.get(0), weapons.get(0), false);
+            } else {
                 choice = random.nextInt(suspects.size());
-            }
-            personGuess = suspects.get(choice);
+                personGuess = suspects.get(choice);
 
-            choice = 0;
-
-            if(locations.size() > 1) {
                 choice = random.nextInt(locations.size());
-            }
+                placeGuess = locations.get(choice);
 
-            placeGuess = locations.get(choice);
-
-            choice = 0;
-
-            if(weapons.size()> 1) {
                 choice = random.nextInt(weapons.size());
-            }
-            weaponGuess = weapons.get(choice);
+                weaponGuess = weapons.get(choice);
 
-            myGuess = new Guess(personGuess,placeGuess,weaponGuess,false);
+                myGuess = new Guess(personGuess, placeGuess, weaponGuess, false);
+            }
         }
 
         return myGuess;

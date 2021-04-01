@@ -21,6 +21,6 @@ public class TestComputerGuess{
 
         Guess guess = new Guess(new Suspect("Bobby"),new Location("Kitchen"), new Weapon("Gun"),false);
 
-        assertNull( bot.canAnswer(guess, player));
+        assertNull(bot.canAnswer(guess, player));
     }
 }
