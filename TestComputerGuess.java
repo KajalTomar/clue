@@ -85,23 +85,23 @@ public class TestComputerGuess{
         // has only suspect and location
         Guess guess0 = new Guess(joe,livingRoom, new Weapon("Gun"),false);
         Card result0 = bot.canAnswer(guess0,player);
-        assert(result0 == joe || result0 ==livingRoom);
+        assert(assertEquals(result0,joe)||assertEquals(result0,livingRoom);
 
-        // has only suspect and weapon
-        Guess guess1 = new Guess(joe,new Location("bedroom"),knife,false);
-        Card result1 = bot.canAnswer(guess1,player);
-        assert(result1 == joe || result1 == knife);
-
-
-        // has only the weapon and location
-        Guess guess2 = new Guess(new Suspect("Martha"),livingRoom,knife,false);
-        Card result2 = bot.canAnswer(guess0,player);
-        assert(result2 == joe);
-
-        // has all three of the cards
-        Guess guess3 = new Guess(joe,livingRoom,knife,false);
-        Card result3 = bot.canAnswer(guess0,player);
-        assert(result3 == joe || result3 == livingRoom);
+//        // has only suspect and weapon
+//        Guess guess1 = new Guess(joe,new Location("bedroom"),knife,false);
+//        Card result1 = bot.canAnswer(guess1,player);
+//        assert(result1 == joe || result1 == knife);
+//
+//
+//        // has only the weapon and location
+//        Guess guess2 = new Guess(new Suspect("Martha"),livingRoom,knife,false);
+//        Card result2 = bot.canAnswer(guess0,player);
+//        assert(result2 == joe);
+//
+//        // has all three of the cards
+//        Guess guess3 = new Guess(joe,livingRoom,knife,false);
+//        Card result3 = bot.canAnswer(guess0,player);
+//        assert(result3 == joe || result3 == livingRoom);
     }
 
 }
