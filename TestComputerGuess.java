@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class TestComputerGuess{
 
     @BeforeEach
-    public voud setup(){
+    public void setup(){
         ArrayList<Card> people = new ArrayList<Card>();
         ArrayList<Card> places = new ArrayList<Card>();
         ArrayList<Card> weapons= new ArrayList<Card>();
