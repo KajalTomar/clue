@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class TestComputerGuess{
 
     private static HumanPlayer player;
-    private static ArrayList<ComputerPlayer> bots;
+    private static ComputerPlayer bot;
     private static ArrayList<Card> people;
     private static ArrayList<Card> places;
     private static ArrayList<Card> weapons;
@@ -23,9 +23,8 @@ public class TestComputerGuess{
     @BeforeEach
     public void setup(){
         player = new HumanPlayer();
-        ComputerPlayer testBot = new ComputerPlayer();
+        bot = new ComputerPlayer();
 
-        bots = new ArrayList<ComputerPlayer>();
         people = new ArrayList<Card>(); // Bob, Timmy, Lori, John, Ryan
         places = new ArrayList<Card>(); // China, Polopark, Paris, Kitchen
         weapons = new ArrayList<Card>(); // Knife, CharmingSmile, Gun
