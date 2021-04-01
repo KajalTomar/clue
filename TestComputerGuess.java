@@ -96,7 +96,7 @@ public class TestComputerGuess{
         // has only the weapon and location
         Guess guess2 = new Guess(new Suspect("Martha"),livingRoom,knife,false);
         Card result2 = bot.canAnswer(guess0,player);
-        assert(result2 == livingRoom || result2 == knife);
+        assert(result2 == livingRoom || result2 == joe);
 
         // has all three of the cards
         Guess guess3 = new Guess(joe,livingRoom,knife,false);
