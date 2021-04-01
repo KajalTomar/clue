@@ -7,7 +7,7 @@
 //
 //-----------------------------------------
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class ComputerPlayer implements IPlayer{
 
@@ -119,36 +119,94 @@ public class ComputerPlayer implements IPlayer{
     // Returns: index (int)
     //------------------------------------------------------
     public Card canAnswer(Guess g, IPlayer ip){
+        ArrayList<Card> canShow = cardsIcanShow(g);
+        Card toShow = null;
+        Random random = new Random();
+        int choice;
+
+        if(canShow.size() == 1){
+            toShow = canShow.get(0);
+        }
+        else {
+           choice =  random.nextInt(canShow.size());
+           toShow = canShow.get(choice);
+        }
+
+        return toShow;
+    } // canAnswer
+
+    public Guess getGuess(){
+        Guess myGuess;
+        Suspect personGuess;
+        Location placeGuess;
+        Weapon weaponGuess;
+        Random random = new Random();
+        int choice;
+
+        if(suspects.size() == 1 && locations.size()==1 && weapons.size() == 1){
+            myGuess = new Guess(suspects.get(0),locations.get(0),weapons.get(0),false);
+        }
+        else {
+            choice =  random.nextInt(suspects.size());
+            personGuess = suspects.get(choice);
+
+            choice =  random.nextInt(locations.size());
+            placeGuess = locations.get(choice);
+
+            choice =  random.nextInt(weapons.size());
+            weaponGuess = weapons.get(choice);
+
+            myGuess = new Guess(personGuess,placeGuess,weaponGuess,false);
+        }
+
+        return myGuess;
+
+    } // getGuess
+
+    public void receiveInfo(IPlayer ip, Card c){
+        int indexofCard;
+
+        if(ip!= null && c!= null){
+            if (c instanceof Suspect) {
+                indexofCard = suspects.indexOf(c);
+                suspects.remove(c);
+            } else if (c instanceof Location) {
+                indexofCard = locations.indexOf(c);
+                locations.remove(c);
+            } else if (c instanceof Weapon) {
+                indexofCard = weapons.indexOf(c);
+                weapons.remove(indexofCard);
+            }
+        }
+
+    } // reveiveInfo
+
+    private ArrayList<Card> cardsIcanShow(Guess g){
+        ArrayList<Card> canShow = new ArrayList<Card>();
         Suspect suspectGuess = (Suspect) g.guessedSuspect();
         Location locationGuess = (Location) g.guessedLocation();
         Weapon weaponGuess = (Weapon) g.guessedWeapon();
-        Card toShow = null;
         int indexofCard;
 
         if(suspectGuess!= null && locationGuess!= null && weaponGuess != null) {
             if (myPeopleCards.contains(suspectGuess)) {
                 indexofCard = myPeopleCards.indexOf(suspectGuess);
-                toShow = myPeopleCards.get(indexofCard);
-            } else if (myLocationCards.contains(locationGuess)) {
+                canShow.add(myPeopleCards.get(indexofCard));
+            }
+
+            if (myLocationCards.contains(locationGuess)) {
                 indexofCard = myLocationCards.indexOf(locationGuess);
-                toShow = myLocationCards.get(indexofCard);
-            } else if (myWeaponCards.contains(weaponGuess)) {
+                canShow.add(myLocationCards.get(indexofCard));
+            }
+
+            if (myWeaponCards.contains(weaponGuess)) {
                 indexofCard = myWeaponCards.indexOf(weaponGuess);
-                toShow = myWeaponCards.get(indexofCard);
+                canShow.add(myWeaponCards.get(indexofCard));
             }
         }
 
-        return toShow;
+        return canShow;
 
-    } // canAnswer
-
-    public Guess getGuess(){
-        return null;
-    } // getGuess
-
-    public void receiveInfo(IPlayer ip, Card c){
-
-    } // reveiveInfo
-
+    }
 
 } // ComputerPlayer

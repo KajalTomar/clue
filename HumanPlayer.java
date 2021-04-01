@@ -238,9 +238,17 @@ public class HumanPlayer implements IPlayer{
 
     public void receiveInfo(IPlayer ip, Card c){
 
+        if(ip == null && c == null){
+            System.out.println("No one could refute your suggestion.");
+            c.printCard();
+        } else {
+            System.out.print("Player"+ip.getIndex()+"refuted your suggestion by showing you ");
+            c.printCard();
+        }
+
     } // reveiveInfo
 
-    public ArrayList<Card> cardsIcanShow(Guess g){
+    private ArrayList<Card> cardsIcanShow(Guess g){
         ArrayList<Card> canShow = new ArrayList<Card>();
         Suspect suspectGuess = (Suspect) g.guessedSuspect();
         Location locationGuess = (Location) g.guessedLocation();
