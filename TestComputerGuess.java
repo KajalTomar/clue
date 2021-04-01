@@ -304,7 +304,7 @@ public class TestComputerGuess{
         // the human can return anything EXCEPT mindy
         assertNotEquals(humanAnswer, (Card)(people.get(2)));
 
-        matches = (humanAnswer == places.get(0)|| humanAnswer == weapons.get(0));
+        matches = (humanAnswer == (Card)places.get(0)|| humanAnswer == (Card)weapons.get(0));
         assertTrue(matches);
     }
 
