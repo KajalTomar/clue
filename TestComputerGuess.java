@@ -14,34 +14,34 @@ import java.util.ArrayList;
 
 public class TestComputerGuess{
 
-    @Test
-    public void noCards() {
-        // a computer player has no cards, then canAnser should returh null
-        ComputerPlayer bot = new ComputerPlayer();
-        HumanPlayer player = new HumanPlayer();
-
-        Guess guess = new Guess(new Suspect("Bobby"),new Location("Kitchen"), new Weapon("Gun"),false);
-
-        assertNull(bot.canAnswer(guess, player));
-    }
-
-    @Test
-    public void exactlyOneCard() {
-        // If a computer player has exactly one card from a guess, canAnswer should return that card.
-
+    @BeforeEach
+    public voud setup{
         ArrayList<Card> people = new ArrayList<Card>();
         ArrayList<Card> places = new ArrayList<Card>();
         ArrayList<Card> weapons= new ArrayList<Card>();
-
-        // these are the cards the computer will have
-        Card joe = new Suspect("Joe");
-        Card livingRoom = new Location("Living room");
-        Card knife = new Weapon("Knife");
 
         ComputerPlayer bot = new ComputerPlayer();
         HumanPlayer player = new HumanPlayer();
 
         bot.setUp(2,0,people,places,weapons);
+    }
+
+    @Test
+    public void test1() {
+        // a computer player has no cards, then canAnser should returh null
+
+        Guess guess = new Guess(new Suspect("Bobby"),new Location("Kitchen"), new Weapon("Gun"),false);
+        assertNull(bot.canAnswer(guess, player));
+    }
+
+    @Test
+    public void test2() {
+        // If a computer player has exactly one card from a guess, canAnswer should return that card.
+
+        // these are the cards the computer will have
+        Card joe = new Suspect("Joe");
+        Card livingRoom = new Location("Living room");
+        Card knife = new Weapon("Knife");
 
         bot.setCard(joe);
         bot.setCard(livingRoom);
@@ -61,22 +61,13 @@ public class TestComputerGuess{
     }
 
     @Test
-    public void moreThanOne(){
+    public void test3(){
         // If a computer player has exactly one card from a guess, canAnswer should return that card.
-
-        ArrayList<Card> people = new ArrayList<Card>();
-        ArrayList<Card> places = new ArrayList<Card>();
-        ArrayList<Card> weapons= new ArrayList<Card>();
 
         // these are the cards the computer will have
         Card joe = new Suspect("Joe");
         Card livingRoom = new Location("Living room");
         Card knife = new Weapon("Knife");
-
-        ComputerPlayer bot = new ComputerPlayer();
-        HumanPlayer player = new HumanPlayer();
-
-        bot.setUp(2,0,people,places,weapons);
 
         bot.setCard(joe);
         bot.setCard(livingRoom);
@@ -84,7 +75,8 @@ public class TestComputerGuess{
 
         // has only suspect and location
         Guess guess0 = new Guess(joe,livingRoom, new Weapon("Gun"),false);
-        assert(assertEquals(bot.canAnswer(guess0,player),joe)||assertEquals(bot.canAnswer(guess0,player),livingRoom));
+        Card result0 = bot.canAnswer(guess0,player);
+        assert(assertEquals(result0,joe)||assertEquals(result0,livingRoom));
 
 //        // has only suspect and weapon
 //        Guess guess1 = new Guess(joe,new Location("bedroom"),knife,false);
