@@ -86,17 +86,23 @@ public class ComputerPlayer implements IPlayer{
         if (c instanceof Suspect){
             myPeopleCards.add(((Suspect)c));
             indexofCard = suspects.indexOf(c);
-            suspects.remove(c);
+            if(indexofCard >= 0) {
+                suspects.remove(c);
+            }
         }
         else if(c instanceof Location){
             myLocationCards.add((Location)c);
             indexofCard = locations.indexOf(c);
-            locations.remove(c);
+            if(indexofCard >= 0) {
+                locations.remove(c);
+            }
         }
         else if (c instanceof Weapon){
             myWeaponCards.add((Weapon)c);
             indexofCard = weapons.indexOf(c);
-            weapons.remove(indexofCard);
+            if(indexofCard >= 0) {
+                weapons.remove(indexofCard);
+            }
         }
     } // setCard
 
