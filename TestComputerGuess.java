@@ -84,7 +84,7 @@ public class TestComputerGuess{
 
         // has only suspect and location
         Guess guess0 = new Guess(joe,livingRoom, new Weapon("Gun"),false);
-        assertThat(bot.canAnswer(guess0,player), anyOf(is(livingRoom),is(joe)));
+        assertThat(bot.canAnswer(guess0,player), anyOf((livingRoom),(joe)));
 
 //        // has only suspect and weapon
 //        Guess guess1 = new Guess(joe,new Location("bedroom"),knife,false);
