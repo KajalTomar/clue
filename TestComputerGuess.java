@@ -60,7 +60,7 @@ public class TestComputerGuess{
         assertEquals(knife,bot.canAnswer(guess2,player));
     }
 
-    @test
+    @Test
     public void moreThanOne(){
         // If a computer player has exactly one card from a guess, canAnswer should return that card.
 
