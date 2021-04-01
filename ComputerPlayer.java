@@ -124,12 +124,13 @@ public class ComputerPlayer implements IPlayer{
         Random random = new Random();
         int choice;
 
-        if(canShow.size() == 1){
-            toShow = canShow.get(0);
-        }
-        else {
-           choice =  random.nextInt(canShow.size());
-           toShow = canShow.get(choice);
+        if(canShow.size()>0) {
+            if (canShow.size() == 1) {
+                toShow = canShow.get(0);
+            } else {
+                choice = random.nextInt(canShow.size());
+                toShow = canShow.get(choice);
+            }
         }
 
         return toShow;
