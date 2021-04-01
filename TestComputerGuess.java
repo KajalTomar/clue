@@ -19,7 +19,7 @@ public class TestComputerGuess{
         ComputerPlayer bot = new ComputerPlayer();
         Player player = new HumanPlayer();
 
-        Guess guess = new Guess(new Person("Bobby"),new Location("Kitchen"),Weapon("Gun"),false);
+        Guess guess = new Guess(new Suspect("Bobby"),new Location("Kitchen"), new Weapon("Gun"),false);
 
         assertNull( bot.canAnswer(guess, player));
     }
