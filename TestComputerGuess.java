@@ -10,6 +10,7 @@
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import java.util.ArrayList;
 
 public class TestComputerGuess{
@@ -21,7 +22,7 @@ public class TestComputerGuess{
     private static ArrayList<Card> weapons;
 
     @BeforeEach
-    void setup(){
+    public void setup(){
         player = new HumanPlayer();
         bot = new ComputerPlayer();
 
