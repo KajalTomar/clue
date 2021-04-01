@@ -163,7 +163,7 @@ public class TestComputerGuess{
     }
 
     @Test
-    public void test4(){
+    public void test5(){
         // an initial guess from a
         // computer player must consist of cards it does not have.
         boolean matches;
