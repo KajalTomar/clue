@@ -258,7 +258,7 @@ public class TestComputerGuess{
         assertFalse(botGuess.isAccusation());
 
         // gets info about the gun card
-        bot.reciveInfo(player, weapons.get(weapons.size() - 1));
+        bot.receiveInfo(player, weapons.get(weapons.size() - 1));
 
         botGuess = bot.getGuess();
 
