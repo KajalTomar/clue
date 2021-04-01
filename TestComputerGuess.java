@@ -292,20 +292,20 @@ public class TestComputerGuess{
 
 
         // player only has the cards: Bobby, Kitchen, and Mindy in their hand
-        bot.setCard(people.get(0));
-        bot.setCard(places.get(0));
-        bot.setCard(weapons.get(0));
+        player.setCard(people.get(0));
+        player.setCard(places.get(0));
+        player.setCard(weapons.get(0));
 
         Guess guess = new Guess(people.get(2),places.get(0),weapons.get(0),false);
 
         // should only be able to show ktichen or knife. NOT Lori because player doesn't have that card
         Card humanAnswer = player.canAnswer(guess,bot);
 
-        // the human can return anything EXCEPT mindy
-//        assertNotEquals(humanAnswer, (Card)(people.get(2)));
-//
-//        matches = (humanAnswer == (Card)places.get(0)|| humanAnswer == (Card)weapons.get(0));
-//        assertTrue(matches);
+     //    the human can return anything EXCEPT mindy
+        assertNotEquals(humanAnswer, (Card)(people.get(2)));
+
+        matches = (humanAnswer == (Card)places.get(0)|| humanAnswer == (Card)weapons.get(0));
+        assertTrue(matches);
     }
 
 }
