@@ -122,7 +122,7 @@ public class ComputerPlayer implements IPlayer{
         ArrayList<Card> canShow = cardsIcanShow(g);
         Card toShow = null;
         Random random = new Random();
-        int choice;
+        int choice = 0;
 
         if(canShow.size() == 1){
             toShow = canShow.get(0);
@@ -141,19 +141,30 @@ public class ComputerPlayer implements IPlayer{
         Location placeGuess;
         Weapon weaponGuess;
         Random random = new Random();
-        int choice;
+        int choice = 0;
 
         if(suspects.size() == 1 && locations.size()==1 && weapons.size() == 1){
             myGuess = new Guess(suspects.get(0),locations.get(0),weapons.get(0),false);
         }
         else {
-            choice =  random.nextInt(suspects.size());
+            if(suspects.size() > 1 ){
+                choice = random.nextInt(suspects.size());
+            }
             personGuess = suspects.get(choice);
 
-            choice =  random.nextInt(locations.size());
+            choice = 0;
+
+            if(locations.size() > 1) {
+                choice = random.nextInt(locations.size());
+            }
+
             placeGuess = locations.get(choice);
 
-            choice =  random.nextInt(weapons.size());
+            choice = 0;
+
+            if(weapons.size()> 1) {
+                choice = random.nextInt(weapons.size());
+            }
             weaponGuess = weapons.get(choice);
 
             myGuess = new Guess(personGuess,placeGuess,weaponGuess,false);
