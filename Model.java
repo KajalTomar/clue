@@ -52,8 +52,8 @@ public class Model{
 
     public void playGame(int numPlayers, ArrayList<Card> ppl, ArrayList<Card> places, ArrayList<Card> weapons,ArrayList<ComputerPlayer> computers,HumanPlayer human){
         setup(numPlayers,ppl,places,weapons,computers,human);
-        chooseWinningCards();
         setupPlayers();
+        chooseWinningCards();
         dealCards();
 
         int position = 0;
@@ -117,6 +117,7 @@ public class Model{
 
     private void chooseWinningCards(){
         int indexOfCard;
+
         Collections.shuffle(suspects);
         Collections.shuffle(locations);
         Collections.shuffle(this.weapons);
@@ -155,6 +156,7 @@ public class Model{
     public void dealCards(){
         int position = 0;
         int cardNumber = cards.size()-1;
+
 
         Collections.shuffle(cards);
 
