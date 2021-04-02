@@ -123,19 +123,16 @@ public class Guess{
     // PURPOSE: prints out the guess
     //------------------------------------------------------
     public void printGuess(){
-        if(accusation){
-            System.out.print("ACCUSATION:");
-        } else {
-            System.out.print("guess: ");
-        }
+            if(accusation){
+                System.out.print("ACCUSATION ");
+            } else {
+                System.out.print("GUESS ");
+            }
 
-        if((suspect != null) && (weapon != null) && (location != null)) {
-            System.out.print("[ suspect: " + suspect.getValue());
-            System.out.print(", location: " + location.getValue());
-            System.out.print(", weapon: " + weapon.getValue() +" ]");
-        } else {
-            System.out.println("Can't print incomplete guess.");
-        }
+            System.out.print("[ SUSPECT: " + suspect.getValue());
+            System.out.print(", LOCATION: " + location.getValue());
+            System.out.print(", WEAPON: " + weapon.getValue() +" ]");
+
     } // printGuess
 
 } // Guess

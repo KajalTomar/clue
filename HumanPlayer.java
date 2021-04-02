@@ -21,7 +21,7 @@ public class HumanPlayer implements IPlayer{
     private ArrayList<Suspect> myPeopleCards;
     private ArrayList<Location> myLocationCards;
     private ArrayList<Weapon> myWeaponCards;
-    Scanner scanner;
+    private Scanner scanner;
 
 
     public HumanPlayer(){
@@ -143,7 +143,7 @@ public class HumanPlayer implements IPlayer{
             System.out.print(", but you couldn't answer.\n");
         }
         else if(canShow.size() == 1){
-            System.out.print(" you showed them the only have card you have: ");
+            System.out.print(" , you showed them the only have card you have: ");
             toShow = canShow.get(0);
             toShow.printCard();
         }
@@ -206,7 +206,7 @@ public class HumanPlayer implements IPlayer{
         weapon = scanner.nextInt();
 
 //        while((weapon < 0 || weapon >= (weapons.size()+myWeaponCards.size())) ){
-        while(weapon < 0 || weapon >= weapons.size()+myWeaponCards.size()){
+        while(weapon < 0 || weapon >= weapons.size()){
             System.out.println("invalid choice");
             weapon = scanner.nextInt();
         }
@@ -217,15 +217,13 @@ public class HumanPlayer implements IPlayer{
         accusationAnswer = scanner.nextLine();
 
 
-       accusationAnswer = accusationAnswer.toLowerCase();
 
-       // not accepting capital N currently
-        while(!(accusationAnswer.compareTo("y") == 0 || accusationAnswer.compareTo("yes") == 0 || accusationAnswer.compareTo("n") == 0|| accusationAnswer.compareTo("no") == 0)){
+        while(!(accusationAnswer.compareTo("y") == 0 || accusationAnswer.compareTo("Y") == 0 || accusationAnswer.compareTo("yes") == 0 || accusationAnswer.compareTo("n") == 0 || accusationAnswer.compareTo("N") == 0|| accusationAnswer.compareTo("no") == 0)){
             System.out.println("invalid choice");
             accusationAnswer = scanner.nextLine();
         }
 
-        if(accusationAnswer.compareTo("y") == 0 || accusationAnswer.compareTo("yes") == 0){
+        if(accusationAnswer.compareTo("y") == 0 || accusationAnswer.compareTo("yes") == 0 || accusationAnswer.compareTo("Y") == 0 ){
             accusation = true;
         }
 
@@ -233,16 +231,15 @@ public class HumanPlayer implements IPlayer{
         System.out.print("you made a(n) ");
         theGuess.printGuess();
 
-        return null;
+        return theGuess;
     } // getGuess
 
     public void receiveInfo(IPlayer ip, Card c){
 
         if(ip == null && c == null){
-            System.out.println("No one could refute your suggestion.");
-            c.printCard();
+            System.out.println("No one could respond to your suggestion.");
         } else {
-            System.out.print("Player"+ip.getIndex()+"refuted your suggestion by showing you ");
+            System.out.print("Player "+ip.getIndex()+" showed you ");
             c.printCard();
         }
 

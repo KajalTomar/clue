@@ -175,6 +175,7 @@ public class ComputerPlayer implements IPlayer{
         int indexofCard;
 
         if(ip!= null && c!= null){
+            System.out.println("Player "+ip.getIndex()+" answered.");
             if (c instanceof Suspect) {
                 indexofCard = suspects.indexOf(c);
                 suspects.remove(c);
@@ -185,6 +186,8 @@ public class ComputerPlayer implements IPlayer{
                 indexofCard = weapons.indexOf(c);
                 weapons.remove(indexofCard);
             }
+        } else {
+            System.out.println("No one could answer");
         }
 
     } // reveiveInfo

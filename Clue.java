@@ -20,16 +20,23 @@
 // * taken from the assignment description
 //-----------------------------------------
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class Clue{
 
-    private static HumanPlayer player;
+    private static Scanner scanner;
+    private static HumanPlayer human;
     private static ArrayList<ComputerPlayer> bots;
+
     private static ArrayList<Card> people;
     private static ArrayList<Card> places;
     private static ArrayList<Card> weapons;
+
     private static ArrayList<Card> cards;
     private static Model model;
+
+    private static int totalPlayers;
 
     //------------------------------------------------------
     // main
@@ -40,66 +47,67 @@ public class Clue{
     //      and calls model to begin the game.
     //------------------------------------------------------
     public static void main(String[] args){
-        player = new HumanPlayer();
-        ComputerPlayer testBot = new ComputerPlayer();
 
-        bots = new ArrayList<ComputerPlayer>();
-        people = new ArrayList<Card>(); // Bob, Timmy, Lori, John, Ryan
-        places = new ArrayList<Card>(); // China, Polopark, Paris, Kitchen
-        weapons = new ArrayList<Card>(); // Knife, CharmingSmile, Gun
+        setup();
+        createSuspectCards();
+        createLocationCards();
+        createWeaponCards();
 
-        cards = new ArrayList<Card>(); // Knife, CharmingSmile, Gun
         model = new Model();
-
-        // an original copy of each category of cards that you do not destroy
-        // copy the piles to give one to each player, make as many copies as computer players (this is liek that card you get to write all over in clue)
-        // shuffle it up and distribute it
-
-        people.add(new Suspect("Bob"));
-        people.add(new Suspect("Timmy"));
-        people.add(new Suspect("Lori"));
-        people.add(new Suspect("Mindy"));
-
-
-   //     System.out.println("Suspect list size: "+people.size());
-
-        places.add(new Location("China"));
-        places.add(new Location("Polopark"));
-        places.add(new Location("Paris"));
-        places.add(new Location("Kitchen"));
-
- //      System.out.println("Places list size: "+places.size());
-
-        weapons.add(new Weapon("Knife"));
-        weapons.add(new Weapon("CharmingSmile"));
-        weapons.add(new Weapon("Gun"));
-
-//        System.out.println("Weapons list size: "+weapons.size());
-
-        cards.addAll(people);
-        cards.addAll(places);
-        cards.addAll(weapons);
-
-//        System.out.println("Total card list size: "+cards.size());
-
-        testBot.setUp(2,0,people,places,weapons);
-        player.setUp(2,1,people,places,weapons);
-
-        player.setCard(people.get(0)); // Bob
-        player.setCard(places.get(2)); // paris
-        player.setCard(places.get(3)); // Kitchen
-        player.setCard(weapons.get(2)); // Gun
-
-        Guess newGuess = new Guess(people.get(0),places.get(3),weapons.get(2),false);
-
-        Card botShowed = player.canAnswer(newGuess,testBot);
-
-        if(botShowed!=null) {
-            botShowed.printCard();
-        }
-
-        player.getGuess();
+        model.playGame(totalPlayers,people,places,weapons,bots,human);
 
     } // main
 
+    private static void setup(){
+        int howManyBots;
+        scanner = new Scanner(System.in);
+        people = new ArrayList<Card>();
+        places = new ArrayList<Card>();
+        weapons = new ArrayList<Card>();
+
+        bots = new ArrayList<ComputerPlayer>();
+        human = new HumanPlayer();
+
+        System.out.print("How many computer players would you like to play against? ");
+        howManyBots = scanner.nextInt();
+
+        while(howManyBots < 1){
+            System.out.println("Invalid entry. Try again.");
+            howManyBots = scanner.nextInt();
+        }
+
+        totalPlayers = howManyBots + 1;
+
+        for(int i = 0; i < howManyBots; i++){
+            bots.add(new ComputerPlayer());
+        }
+
+    }
+
+    public static void createSuspectCards(){
+        people.add(new Suspect("IronMan"));
+        people.add(new Suspect("Captain America"));
+        people.add(new Suspect("Black Widow"));
+        people.add(new Suspect("Hulk"));
+        people.add(new Suspect("Thor"));
+        people.add(new Suspect("Hawkeye"));
+    }
+
+    public static void createLocationCards(){
+        places.add(new Location("NewYork City"));
+        places.add(new Location("Manhattan"));
+        places.add(new Location("Volgograd"));
+        places.add(new Location("Dayton"));
+        places.add(new Location("Asgard"));
+        places.add(new Location("Waverly"));
+    }
+
+    public static void createWeaponCards(){
+        weapons.add(new Weapon("Intelligence and money"));
+        weapons.add(new Weapon("Vibranium Shield"));
+        weapons.add(new Weapon("Widows Bite"));
+        weapons.add(new Weapon("Superhuman Strength"));
+        weapons.add(new Weapon("Mjolnir"));
+        weapons.add(new Weapon("Bow & Arrow"));
+    }
 } // Clue
