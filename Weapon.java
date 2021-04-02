@@ -24,6 +24,4 @@ public class Weapon extends Card{
         super(weapon, "weapon");
     }
 
-
-
 } // Weapon

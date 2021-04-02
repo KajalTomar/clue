@@ -6,7 +6,6 @@
 // REMARKS: the abstract parent type of
 //      the three possible types of cards
 //      (Suspect, Weapon, Location)
-//
 //-----------------------------------------
 public abstract class Card{
     private String type;
@@ -17,8 +16,9 @@ public abstract class Card{
     //
     // PURPOSE: constructor for the Card class
     // PARAMETERS:
-    //      value (String) - what is on the car
+    //      value (String) - what is on the card
     //      type (string)  - what type of card it is (can be
+    //                      (Suspect, Weapon, Location)
     //------------------------------------------------------
     public Card(String value, String type){
         this.value = value;
@@ -43,8 +43,14 @@ public abstract class Card{
         return value;
     }
 
+
+    //------------------------------------------------------
+    // printCard
+    //
+    // PURPOSE: print the type of the card and the value
+    //------------------------------------------------------
     public void printCard(){
         System.out.println("[ "+value+" ("+type+") ]");
-    }
+    } // printCard
 
 } // Card

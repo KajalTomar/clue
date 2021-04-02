@@ -7,7 +7,6 @@
 // the guesses made by the ComputerPlayer class.
 //
 //--------------------------------------------------------
-
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +32,7 @@ public class TestComputerGuess{
 
     @Test
     public void test1() {
-        // a computer player has no cards, then canAnser should returh null
+        // If a computer player has no cards, then canAnswer should return null.
 
         bot.setUp(2,0,people,places,weapons);
 
@@ -43,9 +42,11 @@ public class TestComputerGuess{
 
     @Test
     public void test2() {
-        // If a computer player has exactly one card from a guess, canAnswer should return that card.
+//        If a computer player has exactly one card from a guess, canAnswer should return that
+//        card.
 
-        // these are the cards the computer will have
+
+                // these are the cards the computer will have
         Card joe = new Suspect("Joe");
         Card livingRoom = new Location("Living room");
         Card knife = new Weapon("Knife");
@@ -71,9 +72,10 @@ public class TestComputerGuess{
 
     @Test
     public void test3(){
-        // If a computer player has exactly one card from a guess, canAnswer should return that card.
+       // If a computer player has more than one card from a guess, canAnswer should return one of the cards.
 
-        Boolean matches;
+
+                Boolean matches;
 
         // these are the cards the computer will have
         Card joe = new Suspect("Joe");
@@ -115,8 +117,10 @@ public class TestComputerGuess{
 
     @Test
     public void test4(){
-        // an initial guess from a
-        // computer player must consist of cards it does not have.
+//        If a computer player is given all but n cards (for some number n > 2 that you should
+//        choose) from the set of cards, a call to getGuess should return a guess that does not
+//        contain any of the cards that the player has been given. That is, an initial guess from a
+//        computer player must consist of cards it does not have.
         boolean matches;
 
         people.add(new Suspect("Bob"));
@@ -164,8 +168,8 @@ public class TestComputerGuess{
 
     @Test
     public void test5(){
-        // an initial guess from a
-        // computer player must consist of cards it does not have.
+//        If a computer player is given all but three cards from the set of cards, a call to
+//        getGuess should return the correct accusation (not a suggestion).
         boolean matches;
 
         people.add(new Suspect("Bob"));
@@ -301,7 +305,7 @@ public class TestComputerGuess{
         // should only be able to show ktichen or knife. NOT Lori because player doesn't have that card
         Card humanAnswer = player.canAnswer(guess,bot);
 
-     //    the human can return anything EXCEPT mindy
+        //    the human can return anything EXCEPT mindy
         assertNotEquals(humanAnswer, (Card)(people.get(2)));
 
         matches = (humanAnswer == (Card)places.get(0)|| humanAnswer == (Card)weapons.get(0));
