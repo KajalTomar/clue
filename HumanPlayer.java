@@ -14,6 +14,7 @@ import java.lang.*;
 public class HumanPlayer implements IPlayer{
     private int numberOfOpponents;
     private int index;
+
     private ArrayList<Suspect> suspects;
     private ArrayList<Location> locations;
     private ArrayList<Weapon> weapons;
@@ -104,17 +105,14 @@ public class HumanPlayer implements IPlayer{
         if (c instanceof Suspect){
             myPeopleCards.add(((Suspect)c));
             indexofCard = suspects.indexOf(c);
-            suspects.remove(c);
         }
         else if(c instanceof Location){
             myLocationCards.add((Location)c);
             indexofCard = locations.indexOf(c);
-            locations.remove(c);
         }
         else if (c instanceof Weapon){
             myWeaponCards.add((Weapon)c);
             indexofCard = weapons.indexOf(c);
-            weapons.remove(indexofCard);
         }
     } // setCard
 
@@ -158,7 +156,7 @@ public class HumanPlayer implements IPlayer{
             choice = scanner.nextInt();
 
             while((choice < 0 || choice >= canShow.size()) ){
-                System.out.println("invalid choice");
+                System.out.println("invalid choice, try again");
                 choice = scanner.nextInt();
             }
 
@@ -185,7 +183,7 @@ public class HumanPlayer implements IPlayer{
 
 //        while((suspect < 0 || suspect >= (suspects.size()+myPeopleCards.size())) ){
         while((suspect < 0 || suspect >= suspects.size()) ){
-            System.out.println("invalid choice");
+            System.out.println("invalid choice, try again ");
             suspect = scanner.nextInt();
         }
 
@@ -196,7 +194,7 @@ public class HumanPlayer implements IPlayer{
 
 //        while((crimeScene < 0 || crimeScene >= (locations.size())+myLocationCards.size())){
         while(crimeScene < 0 || crimeScene >= locations.size()){
-            System.out.println("invalid choice");
+            System.out.println("invalid choice, try again");
             crimeScene = scanner.nextInt();
         }
 
@@ -207,7 +205,7 @@ public class HumanPlayer implements IPlayer{
 
 //        while((weapon < 0 || weapon >= (weapons.size()+myWeaponCards.size())) ){
         while(weapon < 0 || weapon >= weapons.size()){
-            System.out.println("invalid choice");
+            System.out.println("invalid choice, try again");
             weapon = scanner.nextInt();
         }
 
@@ -219,7 +217,7 @@ public class HumanPlayer implements IPlayer{
 
 
         while(!(accusationAnswer.compareTo("y") == 0 || accusationAnswer.compareTo("Y") == 0 || accusationAnswer.compareTo("yes") == 0 || accusationAnswer.compareTo("n") == 0 || accusationAnswer.compareTo("N") == 0|| accusationAnswer.compareTo("no") == 0)){
-            System.out.println("invalid choice");
+            System.out.println("invalid choice, try again");
             accusationAnswer = scanner.nextLine();
         }
 

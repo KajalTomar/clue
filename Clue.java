@@ -70,6 +70,7 @@ public class Clue{
 
         System.out.print("How many computer players would you like to play against? ");
         howManyBots = scanner.nextInt();
+        System.out.println();
 
         while(howManyBots < 1){
             System.out.println("Invalid entry. Try again.");
