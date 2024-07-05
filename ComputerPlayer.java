@@ -1,7 +1,7 @@
 //-----------------------------------------
 // CLASS: ComputerPlayer.java
 //
-// Author: Kajal Tomar, 7793306
+// Author: Kajal Tomar
 //
 // REMARKS: implementaion of the computer
 //  player
