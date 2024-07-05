@@ -1,11 +1,5 @@
 //-----------------------------------------
 // NAME		: Kajal Tomar
-// STUDENT NUMBER	: 7793306
-// COURSE		: COMP 2150
-// INSTRUCTOR	: Mike Domaratzki
-// ASSIGNMENT	: assignment 3
-// QUESTION	: question 1
-//
 // REMARKS: This is an implementation of
 // 'whodunit?', a game that involves deduction
 // to determine the 'who, where and how' of a murder.
