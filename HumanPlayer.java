@@ -1,8 +1,7 @@
 //-----------------------------------------
 // CLASS: HumanPlayer.java
 //
-// Author: Kajal Tomar, 7793306
-//
+// Author: Kajal Tomar
 // REMARKS: implements the Iplayer class.
 //      provides methods for the human player.
 //
