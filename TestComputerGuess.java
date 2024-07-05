@@ -1,7 +1,7 @@
 //--------------------------------------------------------
 // CLASS: TestComputerGuess.java
 //
-// Author: Kajal Tomar, 7793306
+// Author: Kajal Tomar
 //
 // REMARKS: the purpose of this class is to test the
 // the guesses made by the ComputerPlayer class.
