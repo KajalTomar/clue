@@ -1,7 +1,7 @@
 //-----------------------------------------
 // CLASS: Card.java
 //
-// Author: Kajal Tomar, 7793306
+// Author: Kajal Tomar
 //
 // REMARKS: the abstract parent type of
 //      the three possible types of cards
