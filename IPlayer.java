@@ -1,7 +1,7 @@
 //-----------------------------------------
 // CLASS: Iplayer.java
 //
-// Author: Kajal Tomar, 7793306
+// Author: Kajal Tomar
 //
 // REMARKS: defines methods that both the
 // the human and computer players need to
