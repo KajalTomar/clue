@@ -1,7 +1,7 @@
 //-----------------------------------------
 // CLASS: Model.java
 //
-// Author: Kajal Tomar, 7793306
+// Author: Kajal Tomar
 //
 // REMARKS: Stores the players and cards for
 //      a game. Initializes and runs a game.
