@@ -1,7 +1,7 @@
 //-----------------------------------------
 // CLASS: Guess.java
 //
-// Author: Kajal Tomar, 7793306
+// Author: Kajal Tomar
 //
 // REMARKS: a guess consists of three cards
 //      (Suspect, Weapon, and Location) and
